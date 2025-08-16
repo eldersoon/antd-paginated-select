@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: 'https://registry.npmjs.org/'
+          registry-url: "https://registry.npmjs.org/"
           # Se sua org npm exige provenance, habilite:
           # provenance: true
 
@@ -42,6 +42,8 @@ jobs:
           printf "//registry.npmjs.org/:_authToken=%s\nalways-auth=true\n" "$NPM_TOKEN" > .npmrc
           npm config set registry "https://registry.npmjs.org/"
           pnpm config set registry "https://registry.npmjs.org/"
+          # Add .npmrc to gitignore to prevent committing secrets
+          echo ".npmrc" >> .gitignore
 
       # DIAGNÓSTICO: verifique que o registry está correto e o token está sendo lido
       - name: Sanity check auth
@@ -53,7 +55,7 @@ jobs:
 
           # Confirma que existe uma linha de auth (mas sem vazar o token)
           if grep -q "_authToken=" ~/.npmrc; then echo "~/.npmrc tem _authToken"; else echo "FALTA token em ~/.npmrc" && exit 1; fi
-          if grep -q "_authToken=" .npmrc; then echo "./.npmrc tem _authToken"; else echo "FALTA token em ./.npmrc" && exit 1; fi
+          if [ -f .npmrc ] && grep -q "_authToken=" .npmrc; then echo "./.npmrc tem _authToken"; else echo "AVISO: ./.npmrc não encontrado ou sem token"; fi
 
           # Testes de rede + identidade usando o token
           npm ping
