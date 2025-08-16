@@ -65,16 +65,15 @@ jobs:
           npm ping
           echo "whoami: $(npm whoami)"
 
-          # Verifica se o token tem acesso à org gammajs
-          if ! npm org ls gammajs >/dev/null 2>&1; then
-            echo "❌ O token atual NÃO tem acesso à organização 'gammajs' no npm."
-            echo "Soluções:"
-            echo "1) Use um Automation Token do usuário que seja membro/owner da org 'gammajs',"
-            echo "   e salve em secrets.NPM_TOKEN."
-            echo "2) Adicione esse usuário à org 'gammajs' com permissão de publish (team/owner)."
+          # Verifica se o usuário pode publicar pacotes pessoais (@eldersoon)
+          USER=$(npm whoami)
+          if [ "$USER" = "eldersoon" ]; then
+            echo "✅ Token é do usuário 'eldersoon' - pode publicar pacotes @eldersoon/*"
+          else
+            echo "❌ Token é do usuário '$USER' mas tentando publicar @eldersoon/*"
+            echo "Use um token do usuário 'eldersoon' ou mude o scope do pacote para @$USER/*"
             exit 1
           fi
-          echo "✅ Token tem acesso à org 'gammajs'. Prosseguindo…"
 
       # Verificar se há changesets para processar
       - name: Check for changesets
