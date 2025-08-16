@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -57,8 +57,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
+          cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -79,8 +79,8 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: pnpm run release
-          title: 'chore: release package'
-          commit: 'chore: release package'
+          title: "chore: release package"
+          commit: "chore: release package"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -105,7 +105,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
