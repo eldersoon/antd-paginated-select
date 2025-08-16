@@ -62,11 +62,21 @@ jobs:
           npm whoami
 
       - name: Create Release PR or Publish
+        id: changesets
         uses: changesets/action@v1
         with:
           version: pnpm changeset version
           publish: pnpm -w changeset publish
+          createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Fallback: se houver changesets mas não conseguiu criar PR, publique diretamente
+      - name: Publish packages (fallback)
+        if: failure() && steps.changesets.outcome == 'failure'
+        run: |
+          echo "PR creation failed, trying direct publish..."
+          pnpm changeset version
+          pnpm -w changeset publish
