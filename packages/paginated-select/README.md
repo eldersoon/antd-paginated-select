@@ -1,4 +1,4 @@
-# @antd-paginated-select/core
+# @eldersoon/antd-paginated-select
 
 A high-performance React component that provides server-side paginated select functionality for Ant Design, built with TypeScript and TanStack Query.
 
@@ -18,11 +18,11 @@ A high-performance React component that provides server-side paginated select fu
 ## Installation
 
 ```bash
-npm install elderson-antd-paginated-select
+npm install @eldersoon/antd-paginated-select
 # or
-yarn add @antd-paginated-select/core
+yarn add @eldersoon/antd-paginated-select
 # or
-pnpm add @antd-paginated-select/core
+pnpm add @eldersoon/antd-paginated-select
 ```
 
 ### Peer Dependencies
@@ -61,7 +61,7 @@ function App() {
 ### 2. Basic Usage
 
 ```tsx
-import { PaginatedSelect, makeAdapter } from "elderson-antd-paginated-select";
+import { PaginatedSelect, makeAdapter } from "@eldersoon/antd-paginated-select";
 
 // Define your data type
 type User = {
