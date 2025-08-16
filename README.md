@@ -72,7 +72,7 @@ pnpm --filter @antd-paginated-select/core build
 ## 📖 Usage
 
 ```tsx
-import { PaginatedSelect, makeAdapter } from "antd-paginated-select-component";
+import { PaginatedSelect, makeAdapter } from "elderson-antd-paginated-select";
 
 // Define your data structure
 type User = { id: string; name: string; email: string };

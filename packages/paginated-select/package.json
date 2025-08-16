@@ -1,5 +1,5 @@
 {
-  "name": "antd-paginated-select-component",
+  "name": "elderson-antd-paginated-select",
   "version": "1.0.2",
   "description": "A paginated select component for Ant Design with server-side data fetching",
   "main": "./dist/index.js",

@@ -18,7 +18,7 @@ A high-performance React component that provides server-side paginated select fu
 ## Installation
 
 ```bash
-npm install antd-paginated-select-component
+npm install elderson-antd-paginated-select
 # or
 yarn add @antd-paginated-select/core
 # or
@@ -61,7 +61,7 @@ function App() {
 ### 2. Basic Usage
 
 ```tsx
-import { PaginatedSelect, makeAdapter } from "antd-paginated-select-component";
+import { PaginatedSelect, makeAdapter } from "elderson-antd-paginated-select";
 
 // Define your data type
 type User = {
