@@ -93,17 +93,22 @@ jobs:
           pnpm changeset version
           pnpm -w changeset publish
 
-      # Criar release no GitHub se publicou com sucesso
+            # Criar release no GitHub se publicou com sucesso
       - name: Create GitHub Release
         if: steps.check_changesets.outputs.has_changesets == 'true'
         run: |
           # Pegar a nova versão do package.json
           VERSION=$(node -p "require('./packages/paginated-select/package.json').version")
           PACKAGE_NAME=$(node -p "require('./packages/paginated-select/package.json').name")
-
-          # Criar tag e release
-          git tag "v$VERSION"
-          git push origin "v$VERSION"
-
+          
+          # Verificar se a tag já existe
+          if git rev-parse "v$VERSION" >/dev/null 2>&1; then
+            echo "🏷️ Tag v$VERSION já existe, pulando criação"
+          else
+            # Criar tag e release
+            git tag "v$VERSION"
+            git push origin "v$VERSION"
+            echo "🏷️ Created tag v$VERSION"
+          fi
+          
           echo "✅ Published $PACKAGE_NAME@$VERSION"
-          echo "🏷️ Created tag v$VERSION"
