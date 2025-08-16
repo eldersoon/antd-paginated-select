@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["paginated-select-example", "paginated-select-docs"]
+  "ignore": []
 }
