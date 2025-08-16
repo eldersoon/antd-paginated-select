@@ -2,86 +2,45 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    branches: [main]
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  test:
-    name: Test & Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Build packages
-        run: pnpm run build
-
-      - name: Type check
-        run: pnpm run type-check
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: packages/*/dist
-
   release:
-    name: Release
     runs-on: ubuntu-latest
-    needs: test
-    if: github.ref == 'refs/heads/main'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
+          run_install: false
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: "pnpm"
-          registry-url: "https://registry.npmjs.org"
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org/'
+          cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+      - name: Install
+        run: pnpm install --frozen-lockfile
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: packages/
+      # (Opcional, mas ajuda quando há workspaces)
+      - name: Configure npm auth for pnpm
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          echo "always-auth=true" >> ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
+      - name: Create Release PR or Publish
         uses: changesets/action@v1
         with:
-          publish: pnpm changeset publish
-          title: "chore: release package"
-          commit: "chore: release package"
+          version: pnpm changeset version
+          publish: pnpm -w changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
