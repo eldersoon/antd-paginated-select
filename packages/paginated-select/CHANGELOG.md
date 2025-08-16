@@ -1,4 +1,4 @@
-# @antd-paginated-select/core
+# @eldersoon/antd-paginated-select
 
 ## 1.0.5
 
