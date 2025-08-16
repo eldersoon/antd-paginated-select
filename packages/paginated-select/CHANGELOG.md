@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - setting env
+- Fixed npm authentication in release workflow
 
 ## 1.0.1
 
