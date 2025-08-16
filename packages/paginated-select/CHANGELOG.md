@@ -1,5 +1,11 @@
 # @antd-paginated-select/core
 
+## 1.0.2
+
+### Patch Changes
+
+- setting env
+
 ## 1.0.1
 
 ### Patch Changes
