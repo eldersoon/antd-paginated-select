@@ -22,8 +22,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: 'https://registry.npmjs.org/'
-          cache: 'pnpm'
+          registry-url: "https://registry.npmjs.org/"
+          cache: "pnpm"
 
       - name: Install
         run: pnpm install --frozen-lockfile
@@ -35,6 +35,24 @@ jobs:
           echo "always-auth=true" >> ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Diagnostic - Show npm config
+        run: |
+          npm -v
+          node -v
+          npm config get registry
+          pnpm config get registry || true
+
+      - name: Diagnostic - Who am I
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm whoami
+
+      - name: Diagnostic - Print package info
+        run: |
+          cd packages/paginated-select
+          node -e "const pkg = require('./package.json'); console.log('Package name:', pkg.name); console.log('PublishConfig:', pkg.publishConfig);"
 
       - name: Create Release PR or Publish
         uses: changesets/action@v1
