@@ -62,3 +62,6 @@ docs/.vitepress/dist/
 
 # npm auth tokens
 .npmrc
+
+# Workflow documentation (local only)
+workflow-npm-publish.md
