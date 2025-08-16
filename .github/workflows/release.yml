@@ -45,9 +45,13 @@ jobs:
           # Add .npmrc to gitignore to prevent committing secrets
           echo ".npmrc" >> .gitignore
 
-      # DIAGNÓSTICO: verifique que o registry está correto e o token está sendo lido
-      - name: Sanity check auth
+      # VALIDAÇÃO: verificar autenticação e acesso à organização
+      - name: Validate npm auth & org access
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          set -e
           echo "node: $(node -v)"
           echo "npm:  $(npm -v)"
           echo "npm registry: $(npm config get registry)"
@@ -59,7 +63,18 @@ jobs:
 
           # Testes de rede + identidade usando o token
           npm ping
-          npm whoami
+          echo "whoami: $(npm whoami)"
+
+          # Verifica se o token tem acesso à org gammajs
+          if ! npm org ls gammajs >/dev/null 2>&1; then
+            echo "❌ O token atual NÃO tem acesso à organização 'gammajs' no npm."
+            echo "Soluções:"
+            echo "1) Use um Automation Token do usuário que seja membro/owner da org 'gammajs',"
+            echo "   e salve em secrets.NPM_TOKEN."
+            echo "2) Adicione esse usuário à org 'gammajs' com permissão de publish (team/owner)."
+            exit 1
+          fi
+          echo "✅ Token tem acesso à org 'gammajs'. Prosseguindo…"
 
       # Verificar se há changesets para processar
       - name: Check for changesets
@@ -78,7 +93,7 @@ jobs:
           echo "📦 Processing changesets and publishing..."
           pnpm changeset version
           pnpm -w changeset publish
-          
+
       # Criar release no GitHub se publicou com sucesso
       - name: Create GitHub Release
         if: steps.check_changesets.outputs.has_changesets == 'true'
@@ -86,10 +101,10 @@ jobs:
           # Pegar a nova versão do package.json
           VERSION=$(node -p "require('./packages/paginated-select/package.json').version")
           PACKAGE_NAME=$(node -p "require('./packages/paginated-select/package.json').name")
-          
+
           # Criar tag e release
           git tag "v$VERSION"
           git push origin "v$VERSION"
-          
+
           echo "✅ Published $PACKAGE_NAME@$VERSION"
           echo "🏷️ Created tag v$VERSION"

@@ -1,6 +1,6 @@
 {
-  "name": "@elderson/antd-paginated-select",
-  "version": "1.0.2",
+  "name": "@gammajs/antd-paginated-select",
+  "version": "1.0.4",
   "description": "A paginated select component for Ant Design with server-side data fetching",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -14,8 +14,12 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE",
+    "package.json"
   ],
+  "private": false,
+  "sideEffects": false,
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
