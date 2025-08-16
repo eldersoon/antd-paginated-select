@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
-    "preview": "vitepress preview",
-    "type-check": "tsc --noEmit"
+    "preview": "vitepress preview"
   },
   "dependencies": {
     "@antd-paginated-select/core": "workspace:*",
