@@ -1,5 +1,16 @@
 # @eldersoon/antd-paginated-select
 
+## 1.1.0
+
+### Minor Changes
+
+- 46d069a: fix missed folder
+
+### Patch Changes
+
+- a8d8c51: change docs imports
+- a855456: change urls
+
 ## 1.0.5
 
 ### Patch Changes
