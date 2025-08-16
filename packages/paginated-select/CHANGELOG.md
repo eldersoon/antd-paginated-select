@@ -1,5 +1,11 @@
 # @antd-paginated-select/core
 
+## 1.0.3
+
+### Patch Changes
+
+- 47d2c49: fix build error
+
 ## 1.0.2
 
 ### Patch Changes
