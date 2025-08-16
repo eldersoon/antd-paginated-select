@@ -89,7 +89,7 @@ export default function PaginatedSelect<
 
   const ns = useRef(Math.random().toString(36).slice(2, 7));
   const log = useCallback(
-    (...a: any[]) => debug && console.log(`[PS:${ns.current}]`, ...a),
+    (...a: unknown[]) => debug && console.log(`[PS:${ns.current}]`, ...a),
     [debug]
   );
 
@@ -220,9 +220,9 @@ export default function PaginatedSelect<
             ? pageNumber * pageSize < (res.total ?? items.length)
             : false;
 
-        const mapped: OptionType[] = items.map((it: any) => ({
-          value: dataAdapter.getValue(it as T),
-          label: dataAdapter.getLabel(it as T),
+        const mapped: OptionType[] = items.map((it: T) => ({
+          value: dataAdapter.getValue(it),
+          label: dataAdapter.getLabel(it),
         }));
 
         setData((prev) => {
@@ -319,14 +319,14 @@ export default function PaginatedSelect<
       return valsWithLabels.length > 0 ? valsWithLabels : undefined;
     }
     return undefined;
-  }, [value, hasAllLabels, multiple, valuesArray, data]) as any;
+  }, [value, hasAllLabels, multiple, valuesArray, data]);
 
   return (
     <Select
       {...restProps}
       mode={multiple ? "multiple" : undefined}
-      value={effectiveValue}
-      onChange={onChange as any}
+      value={effectiveValue as ValueType<M>}
+      onChange={onChange as (value: ValueType<M>, option?: OptionType | OptionType[]) => void}
       showSearch
       style={{ width: "100%" }}
       listHeight={LIST_HEIGHT}
