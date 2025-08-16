@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",
-    "@antd-paginated-select/core": "workspace:*",
+    "@antd-paginated-select": "workspace:*",
     "@tanstack/react-query": "^5.0.0",
     "@tanstack/react-query-devtools": "^5.0.0",
     "antd": "^5.12.0",

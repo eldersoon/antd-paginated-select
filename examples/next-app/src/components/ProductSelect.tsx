@@ -1,6 +1,10 @@
 "use client";
 
-import { PaginatedSelect, makeAdapter, type ListArgs } from "@antd-paginated-select/core";
+import {
+  PaginatedSelect,
+  makeAdapter,
+  type ListArgs,
+} from "@antd-paginated-select";
 import { mockProductAPI } from "@/lib/mockApi";
 
 /**

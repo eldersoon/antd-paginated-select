@@ -17,13 +17,13 @@ A React component that provides a paginated select with server-side data fetchin
 Install the package:
 
 ```bash
-npm install @antd-paginated-select/core
+npm install @antd-paginated-select
 ```
 
 Set up your data adapter:
 
 ```tsx
-import { PaginatedSelect, makeAdapter } from "@antd-paginated-select/core";
+import { PaginatedSelect, makeAdapter } from "@antd-paginated-select";
 
 const userAdapter = makeAdapter<User>()({
   list: async ({ page, pageSize, search }) => {

@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Paginated Select Demo",
-  description: "Demo application for @antd-paginated-select/core",
+  description: "Demo application for @antd-paginated-select",
 };
 
 export default function RootLayout({

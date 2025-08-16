@@ -16,12 +16,11 @@ export default function Home() {
     <div style={{ padding: "24px", maxWidth: "1200px", margin: "0 auto" }}>
       <Title level={1}>Paginated Select Demo</Title>
       <Paragraph>
-        This interactive demo showcases the{" "}
-        <code>@antd-paginated-select/core</code> component with various
-        configurations including single/multiple selection, server-side search,
-        infinite scrolling, and different data adapters. Each example
-        demonstrates real-world usage patterns with mock APIs that simulate
-        realistic server responses and network delays.
+        This interactive demo showcases the <code>@antd-paginated-select</code>{" "}
+        component with various configurations including single/multiple
+        selection, server-side search, infinite scrolling, and different data
+        adapters. Each example demonstrates real-world usage patterns with mock
+        APIs that simulate realistic server responses and network delays.
       </Paragraph>
 
       <Divider />

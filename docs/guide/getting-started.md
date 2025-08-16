@@ -7,15 +7,15 @@ Install the package using your preferred package manager:
 ::: code-group
 
 ```bash [npm]
-npm install @antd-paginated-select/core
+npm install @antd-paginated-select
 ```
 
 ```bash [yarn]
-yarn add @antd-paginated-select/core
+yarn add @antd-paginated-select
 ```
 
 ```bash [pnpm]
-pnpm add @antd-paginated-select/core
+pnpm add @antd-paginated-select
 ```
 
 :::
@@ -51,7 +51,7 @@ function App() {
 Here's a minimal example to get you started:
 
 ```tsx
-import { PaginatedSelect, makeAdapter } from "@antd-paginated-select/core";
+import { PaginatedSelect, makeAdapter } from "@antd-paginated-select";
 
 // Define your data type
 type User = {

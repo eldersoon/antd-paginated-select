@@ -66,7 +66,7 @@ pnpm build
 pnpm build
 
 # Build specific package
-pnpm --filter @antd-paginated-select/core build
+pnpm --filter @antd-paginated-select build
 ```
 
 ## 📖 Usage
