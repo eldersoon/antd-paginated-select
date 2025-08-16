@@ -1,0 +1,59 @@
+{
+  "name": "@antd-paginated-select/core",
+  "version": "1.0.0",
+  "description": "A paginated select component for Ant Design with server-side data fetching",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "keywords": [
+    "react",
+    "antd",
+    "ant-design",
+    "select",
+    "pagination",
+    "infinite-scroll",
+    "server-side"
+  ],
+  "author": "Elderson Gamma <eldersondagama@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "antd": ">=5.0.0",
+    "@tanstack/react-query": ">=4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "eslint": "^8.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eldersongamma/antd-paginated-select.git",
+    "directory": "packages/paginated-select"
+  },
+  "homepage": "https://github.com/eldersongamma/antd-paginated-select#readme",
+  "bugs": {
+    "url": "https://github.com/eldersongamma/antd-paginated-select/issues"
+  }
+}
