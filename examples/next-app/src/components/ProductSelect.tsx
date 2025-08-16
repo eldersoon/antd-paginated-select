@@ -1,6 +1,6 @@
 "use client";
 
-import { PaginatedSelect, makeAdapter } from "@antd-paginated-select/core";
+import { PaginatedSelect, makeAdapter, type ListArgs } from "@antd-paginated-select/core";
 import { mockProductAPI } from "@/lib/mockApi";
 
 /**
@@ -20,7 +20,7 @@ type Product = {
 };
 
 const productAdapter = makeAdapter<Product>()({
-  list: async ({ page, pageSize, search }) => {
+  list: async ({ page, pageSize, search }: ListArgs) => {
     const response = await mockProductAPI.getProducts({
       page,
       limit: pageSize,
@@ -34,11 +34,11 @@ const productAdapter = makeAdapter<Product>()({
   getById: async (id: string) => {
     return mockProductAPI.getProductById(id);
   },
-  getLabel: (product) =>
+  getLabel: (product: Product) =>
     `${product.name} - $${product.price} ${
       !product.inStock ? "(Out of Stock)" : ""
     }`,
-  getValue: (product) => product.id,
+  getValue: (product: Product) => product.id,
 });
 
 type ProductSelectProps = {

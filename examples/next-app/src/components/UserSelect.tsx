@@ -1,6 +1,6 @@
 "use client";
 
-import { PaginatedSelect, makeAdapter } from "@antd-paginated-select/core";
+import { PaginatedSelect, makeAdapter, type ListArgs } from "@antd-paginated-select/core";
 import { mockUserAPI } from "@/lib/mockApi";
 
 /**
@@ -19,7 +19,7 @@ type User = {
 };
 
 const userAdapter = makeAdapter<User>()({
-  list: async ({ page, pageSize, search, params }) => {
+  list: async ({ page, pageSize, search, params }: ListArgs) => {
     const response = await mockUserAPI.getUsers({
       page,
       limit: pageSize,
@@ -37,8 +37,8 @@ const userAdapter = makeAdapter<User>()({
   getByIds: async (ids: string[]) => {
     return mockUserAPI.getUsersByIds(ids);
   },
-  getLabel: (user) => `${user.name} (${user.email})`,
-  getValue: (user) => user.id,
+  getLabel: (user: User) => `${user.name} (${user.email})`,
+  getValue: (user: User) => user.id,
 });
 
 type UserSelectProps = {

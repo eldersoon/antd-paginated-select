@@ -326,7 +326,12 @@ export default function PaginatedSelect<
       {...restProps}
       mode={multiple ? "multiple" : undefined}
       value={effectiveValue as ValueType<M>}
-      onChange={onChange as (value: ValueType<M>, option?: OptionType | OptionType[]) => void}
+      onChange={
+        onChange as (
+          value: ValueType<M>,
+          option?: OptionType | OptionType[]
+        ) => void
+      }
       showSearch
       style={{ width: "100%" }}
       listHeight={LIST_HEIGHT}
