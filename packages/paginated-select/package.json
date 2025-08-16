@@ -1,6 +1,6 @@
 {
   "name": "@eldersoon/antd-paginated-select",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A paginated select component for Ant Design with server-side data fetching",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -57,11 +57,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eldersongamma/antd-paginated-select.git",
+    "url": "https://github.com/eldersoon/antd-paginated-select.git",
     "directory": "packages/paginated-select"
   },
-  "homepage": "https://github.com/eldersongamma/antd-paginated-select#readme",
+  "homepage": "https://github.com/eldersoon/antd-paginated-select#readme",
   "bugs": {
-    "url": "https://github.com/eldersongamma/antd-paginated-select/issues"
+    "url": "https://github.com/eldersoon/antd-paginated-select/issues"
   }
 }
