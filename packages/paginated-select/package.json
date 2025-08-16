@@ -34,6 +34,10 @@
   ],
   "author": "Elderson Gamma <eldersondagama@gmail.com>",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
