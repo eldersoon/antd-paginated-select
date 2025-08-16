@@ -100,7 +100,7 @@ jobs:
           # Pegar a nova versão do package.json
           VERSION=$(node -p "require('./packages/paginated-select/package.json').version")
           PACKAGE_NAME=$(node -p "require('./packages/paginated-select/package.json').name")
-          
+
           # Verificar se a tag já existe
           if git rev-parse "v$VERSION" >/dev/null 2>&1; then
             echo "🏷️ Tag v$VERSION já existe, pulando criação"
@@ -110,5 +110,5 @@ jobs:
             git push origin "v$VERSION"
             echo "🏷️ Created tag v$VERSION"
           fi
-          
+
           echo "✅ Published $PACKAGE_NAME@$VERSION"

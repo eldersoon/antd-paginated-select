@@ -57,11 +57,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eldersoon/antd-paginated-select.git",
+    "url": "https://github.com/eldersongamma/antd-paginated-select.git",
     "directory": "packages/paginated-select"
   },
-  "homepage": "https://github.com/eldersoon/antd-paginated-select#readme",
+  "homepage": "https://github.com/eldersongamma/antd-paginated-select#readme",
   "bugs": {
-    "url": "https://github.com/eldersoon/antd-paginated-select/issues"
+    "url": "https://github.com/eldersongamma/antd-paginated-select/issues"
   }
 }
