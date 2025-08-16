@@ -91,6 +91,9 @@ jobs:
         run: |
           echo "📦 Processing changesets and publishing..."
           pnpm changeset version
+          echo "🔨 Building packages..."
+          pnpm run build
+          echo "🚀 Publishing to npm..."
           pnpm -w changeset publish
 
             # Criar release no GitHub se publicou com sucesso
